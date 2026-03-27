@@ -1,0 +1,165 @@
+<!-- 
+  PROJETO: BOX GINGA SMART OS (FINAL MASTER)
+  ENGENHARIA: CAMADA 10 - ISOLAMENTO DE KERNEL
+  ESTRATÉGIA: PERFORMANCE EXTREMA / ANTI-QUEIMA / COMANDO UNIVERSAL
+  CRIADOR: RAFAEL & GINGA AI (LUANDA 2026)
+-->
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Box Ginga - Elite OS</title>
+    
+    <style>
+        :root { 
+            --ouro: #d4af37; --bg: #000; --vidro: rgba(255,255,255,0.08); 
+            --safe: #30d158; --apple-gradient: linear-gradient(45deg, #ff5f6d, #ffc371, #81ff71, #71efff, #7871ff, #ff71e5);
+        }
+
+        body, html { 
+            margin: 0; padding: 0; background: var(--bg); color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro", sans-serif;
+            height: 100vh; overflow: hidden; -webkit-font-smoothing: antialiased;
+        }
+
+        /* CAMADA 1-3: BOOT DE LUXO (APPLE STYLE) */
+        #boot-screen {
+            position: fixed; inset: 0; background: #fff; z-index: 10000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .logo-g { 
+            width: 90px; height: 90px; border: 4px solid #000; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 3rem; font-weight: 900; color: #000; animation: respirar 2s infinite;
+        }
+        .hello { 
+            font-family: cursive; font-size: 5rem; background: var(--apple-gradient);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            opacity: 0; transform: translateY(20px); transition: 1.5s;
+        }
+
+        @keyframes respirar { 0%, 100% { transform: scale(0.96); } 50% { transform: scale(1.04); } }
+
+        /* CAMADA 4-7: INTERFACE MARCIOMAR SMART TV */
+        .fundo-dinamico {
+            position: fixed; inset: 0; z-index: -1;
+            background: linear-gradient(to top, #000 20%, transparent 80%),
+                        url('https://images.unsplash.com');
+            background-size: cover; background-position: center; filter: brightness(0.5);
+        }
+
+        header { padding: 40px 60px; display: flex; justify-content: space-between; align-items: center; }
+        .shelf { display: flex; gap: 30px; padding: 0 60px; align-items: center; flex-grow: 1; overflow-x: auto; }
+        .shelf::-webkit-scrollbar { display: none; }
+        
+        .card-app {
+            min-width: 280px; height: 160px; background: var(--vidro); border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column;
+            align-items: center; justify-content: center; transition: 0.5s; backdrop-filter: blur(20px);
+        }
+        .card-app:hover { transform: scale(1.1) translateY(-10px); border-color: var(--ouro); box-shadow: 0 30px 60px rgba(0,0,0,0.8); }
+
+        /* CAMADA 8-10: COMANDO UNIVERSAL (XEQUE-MATE) */
+        .comando {
+            position: fixed; bottom: 40px; right: 40px; width: 160px; height: 160px;
+            background: rgba(20,20,20,0.9); border-radius: 50%; border: 2px solid var(--ouro);
+            display: grid; grid-template-areas: ". up ." "left ok right" ". down .";
+            padding: 15px; gap: 5px; box-shadow: 0 10px 40px #000; z-index: 999;
+        }
+        .btn { background: #333; border: none; border-radius: 50%; color: #fff; cursor: pointer; font-size: 1.2rem; }
+        .btn:active { background: var(--ouro); color: #000; }
+        .ok { grid-area: ok; background: var(--ouro); color: #000; font-weight: 900; }
+        .up { grid-area: up; } .down { grid-area: down; } .left { grid-area: left; } .right { grid-area: right; }
+    </style>
+</head>
+<body>
+
+    <!-- BOOT ELITE -->
+    <div id="boot-screen">
+        <div id="logo-block" class="logo-g">G</div>
+        <div id="hello-text" class="hello">Olá</div>
+        <div style="position:absolute; bottom:40px; font-size:0.6rem; color:#999; letter-spacing:3px;">PROJETO GINGA • TECNOLOGIA AFRICANA</div>
+    </div>
+
+    <div class="fundo-dinamico"></div>
+
+    <header>
+        <div style="font-weight:900; font-size:1.8rem; color:var(--ouro);">BOX GINGA</div>
+        <div id="relogio" style="font-size:1.4rem; font-weight:200;">00:00</div>
+        <div style="color:var(--safe); border:1px solid var(--safe); padding:5px 15px; border-radius:20px; font-size:0.7rem;">MODO SMART TV ATIVO</div>
+    </header>
+
+    <main class="shelf">
+        <div class="card-app" onclick="location.href='https://youtube.com'"><span style="font-size:3rem;">📺</span><br>YouTube</div>
+        <div class="card-app" onclick="location.href='https://netflix.com'"><span style="font-size:3rem;">🎬</span><br>Netflix</div>
+        <div class="card-app" onclick="location.href='https://google.com'"><span style="font-size:3rem;">🔍</span><br>Internet</div>
+        <div class="card-app" onclick="ouvirGinga()"><span style="font-size:3rem;">🎙️</span><br>Voz AI</div>
+    </main>
+
+    <!-- COMANDO FIXO -->
+    <div class="comando">
+        <button class="btn up" onclick="acao('Cima')">▲</button>
+        <button class="btn left" onclick="acao('Esquerda')">◀</button>
+        <button class="btn ok" onclick="acao('OK')">OK</button>
+        <button class="btn right" onclick="acao('Direita')">▶</button>
+        <button class="btn down" onclick="acao('Baixo')">▼</button>
+    </div>
+
+    <script>
+        const audio = new (window.AudioContext || window.webkitAudioContext)();
+        function som(f, d) {
+            const o = audio.createOscillator(); const g = audio.createGain();
+            o.frequency.value = f; g.gain.exponentialRampToValueAtTime(0.0001, audio.currentTime + d);
+            o.connect(g); g.connect(audio.destination); o.start(); o.stop(audio.currentTime + d);
+        }
+
+        // MOTOR DE BOOT RECURSIVO
+        window.onload = () => {
+            const boot = document.getElementById('boot-screen');
+            const logo = document.getElementById('logo-block');
+            const hello = document.getElementById('hello-text');
+
+            setTimeout(() => {
+                logo.style.display = 'none';
+                hello.style.opacity = '1';
+                som(523, 0.5);
+            }, 3000);
+
+            setTimeout(() => {
+                boot.style.opacity = '0';
+                som(659, 1);
+                setTimeout(() => boot.remove(), 1200);
+            }, 6000);
+        };
+
+        // CONTROLO DE PERFORMANCE (ANTI-TRAVAGEM)
+        function acao(tipo) {
+            som(800, 0.1);
+            console.log("Ginga CMD: " + tipo);
+        }
+
+        // RELÓGIO SMART
+        setInterval(() => {
+            const d = new Date();
+            document.getElementById('relogio').innerText = d.getHours().toString().padStart(2,'0') + ":" + d.getMinutes().toString().padStart(2,'0');
+        }, 1000);
+
+        // VOZ IA INTELIGENTE
+        function ouvirGinga() {
+            const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (Recognition) {
+                const rec = new Recognition(); rec.lang = 'pt-PT';
+                rec.onresult = (e) => window.location.href = 'https://google.com' + e.results.transcript;
+                rec.start();
+            }
+        }
+
+        // ESCUDO DE ECONOMIA (MANTÉM TV LIGADA, TELEFONE EM BAIXO CONSUMO)
+        if ('wakeLock' in navigator) {
+            navigator.wakeLock.request('screen').catch(() => {});
+        }
+    </script>
+</body>
+</html>
