@@ -1,0 +1,8 @@
+[project]
+name = "ginga-leads-workflow"
+version = "0.1.0"
+description = "Ginga Studio - radar e qualificacao de leads"
+requires-python = ">=3.12,<3.15"
+dependencies = [
+    "mistralai-workflows[mistralai]>=3.10,<4",
+]
